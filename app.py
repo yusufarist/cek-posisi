@@ -105,7 +105,8 @@ def main():
         lat, lon = extract_coords(url)
         
         if lat is not None and lon is not None:
-            st.success(f"Koordinat ditemukan: {lat}, {lon}")
+            st.success("Koordinat ditemukan:")
+            st.code(f"{lat}, {lon}", language="text")
             
             data = load_data()
             point = Point(lon, lat)
