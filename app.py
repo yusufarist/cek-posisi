@@ -107,9 +107,9 @@ def main():
         if lat is not None and lon is not None:
             col_lat, col_lon = st.columns(2)
             with col_lat:
-                lat_text = st.text_input("Latitude", value=str(lat), disabled=True, key="lat_display")
+                st.code(f"{lat}", language="text")
             with col_lon:
-                lon_text = st.text_input("Longitude", value=str(lon), disabled=True, key="lon_display")
+                st.code(f"{lon}", language="text")
             
             data = load_data()
             point = Point(lon, lat)
