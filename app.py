@@ -216,7 +216,16 @@ def main():
 
     # --- TAB 2: Coverage Analysis ---
     with tabs[1]:
-        st.header("Analisis Sebaran Data (Gap Analysis)")
+        col_head, col_btn = st.columns([0.8, 0.2])
+        with col_head:
+            st.header("Analisis Sebaran Data (Gap Analysis)")
+        with col_btn:
+            if st.button("🔄 Refresh Data", type="secondary"):
+                load_remote_csv.clear()
+                try:
+                    st.rerun()
+                except AttributeError:
+                    st.experimental_rerun()
         
         # Input Source (Hidden)
         default_csv_url = "https://docs.google.com/spreadsheets/d/1vA7kgO_3zcAcWbdlyLAnFNiFZiYrlYCNSatKK-jdhsE/export?format=csv&gid=1577962926"
@@ -235,7 +244,7 @@ def main():
                 # 1. Normalize Input Names
                 input_names = set(df_input[sls_col].dropna().apply(normalize_sls_name))
                 
-                # 2. Visualization Only
+                # 2. Visualization
                 create_coverage_map(data['sls'], input_names, 'nmsls', "Peta Sebaran SLS")
                 
             else:
